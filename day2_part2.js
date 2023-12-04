@@ -1,4 +1,3 @@
-// Determine which games would have been possible if the bag had been loaded with only 12 red cubes, 13 green cubes, and 14 blue cubes. What is the sum of the IDs of those games?
 var conditions = {
     red: 12,
     green: 13,
@@ -26,28 +25,23 @@ async function ready(input) {
     var extracted_numbers = 0
 
     for (let i = 0; i < input.length; i++) {
-        // check if the set is valid based on conditions
-        let valid = true
+        extracted_number = 1
         for (const color in conditions) {
             if (conditions.hasOwnProperty(color)) {
-                const condition = conditions[color];
-                if (input[i][color][0] > condition) {
-                    valid = false
-                }
+                // console.log(color, parseFloat(input[i][color][0]))
+                extracted_number = extracted_number * parseFloat(input[i][color][0])
             }
         }
-        
-        if (valid) {
-                console.log(i+1, input[i])
-                extracted_numbers += (i + 1)
-            }
+        // console.log(extracted_number)
+        extracted_numbers += extracted_number
     }
     
     console.log(extracted_numbers);
+        console.timeEnd('day2');
 }
 
 async function sortFunc(a, b) {
         return parseInt(a) - parseInt(b)
 } 
 
-// correct answer: 2149
+// correct answer: 71274
